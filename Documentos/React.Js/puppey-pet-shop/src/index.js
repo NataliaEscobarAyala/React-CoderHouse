@@ -4,8 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Menu from "./components/NavBar";
+import Lista from "./components/Lista";
+
+
 ReactDOM.render(
   <React.StrictMode>
+<Menu/>
+<Lista/>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
