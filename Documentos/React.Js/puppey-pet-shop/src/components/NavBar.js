@@ -1,13 +1,12 @@
 import React from "react";
 import "./NavBar.css";
+import CartWidget from "./CartWidget";
 
 export default function NavBar() {
   return (
     <div className="contenedor">
-      <hi>PUPPEY-Pet-Shop</hi>
-      
-      
+      <h1>PUPPEY-Pet-Shop</h1>
+      <CartWidget/>
     </div>
-    
   );
 }
