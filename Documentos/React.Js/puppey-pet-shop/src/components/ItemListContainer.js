@@ -1,34 +1,17 @@
 import React, { useState } from "react";
+import ItemCount from "../ItemCount";
 
-function ItemListContainer({ stock, initial }) {
-  const [counter, setCounter] = useState(initial);
+function ItemListContainer() {
 
   return (
-    <div className="ItemListContainer">
-      <label>{counter}</label>
-      <button
-        type="button"
-        class="btn btn-success"
-        onClick={() => {
-          if (counter !== stock) {
-            setCounter(counter + 1);
-          }
-        }}
-      >
-        +
-      </button>
-      <button
-        type="button"
-        class="btn btn-success"
-        onClick={() => {
-          if (counter !== 0) {
-            setCounter(counter - 1);
-          }
-        }}
-      >
-        -
-      </button>
-    </div>
+ 
+   <div className="ItemListContainer">
+ 
+     <ItemCount stock={5} initial={1} onAdd={(count) => console.log(count)} />
+ 
+   </div>
+ 
   );
+ 
 }
 export default ItemListContainer;

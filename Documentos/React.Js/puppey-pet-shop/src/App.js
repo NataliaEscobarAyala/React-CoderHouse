@@ -5,7 +5,7 @@ function App({initial}) {
   
   return (
     <div className="ItemListContainer">
-          <ItemListContainer stock={5} initial={1}/>
+          <ItemListContainer stock={5} initial={1} onAdd={(counter) => console.log(counter)} />
     </div>
   );
 }

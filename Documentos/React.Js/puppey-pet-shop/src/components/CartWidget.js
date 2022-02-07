@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import "./NavBar.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
