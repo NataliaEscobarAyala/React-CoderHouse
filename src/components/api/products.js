@@ -1,10 +1,13 @@
+import imagenes from "../imagenes";
+
+
 export const products = [
   {
     id: 1,
     name: "Dogchow",
     stock: 8,
     price: 500,
-    img: "../../img/dogchow.png",
+    img: imagenes.img1,
     categoria:"alimentos"
 
   },
@@ -13,7 +16,7 @@ export const products = [
     name: "OldPrince",
     stock: 3,
     price: 475,
-    img: "../../img/oldprince.jpg",
+    img: imagenes.img2,
     categoria:"alimentos"
   },
   {
@@ -21,7 +24,7 @@ export const products = [
     name: "Ultima",
     stock: 3,
     price: 490,
-    img: "../../img/ultima.jpg",
+    img: imagenes.img3,
     categoria:"alimentos"
 
   },
@@ -30,7 +33,7 @@ export const products = [
     name: "Raza",
     stock: 5,
     price: 360,
-    img: "../../img/raza.jpg",
+    img: imagenes.img4,
     categoria:"alimentos"
 
   },
