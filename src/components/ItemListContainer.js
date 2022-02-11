@@ -13,13 +13,16 @@ const ItemListContainer = () => {
   });
 
   return (
+    
     <div className="ItemListContainer">
+      <ItemList items={items} />
       <ItemCount
         stock={5}
         initial={1}
         onAdd={(counter) => console.log(counter)}
       />
-      <ItemList items={items} />
+      
+      
     </div>
   );
 };
