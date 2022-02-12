@@ -1,6 +1,6 @@
 import ItemCount from "./ItemCount";
 import React, { useEffect, useState } from "react";
-import { traerProductos } from "./api/products";
+import { traerProductos } from "../api/products";
 import ItemList from "./ItemList";
 
 const ItemListContainer = () => {

@@ -1,12 +1,14 @@
 import React from "react";
 import "./NavBar.css";
 import CartWidget from "./CartWidget";
+import Lista from './Lista'
 
 export default function NavBar() {
   return (
-    <div className="contenedor">
+    <div className="NavBar">
       <h1>PUPPEY-Pet-Shop</h1>
-      <CartWidget/>
+      <CartWidget />
+      <Lista />
     </div>
   );
 }

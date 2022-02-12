@@ -1,4 +1,4 @@
-import imagenes from "../imagenes";
+import imagenes from "../components/imagenes";
 
 
 export const products = [
