@@ -2,15 +2,17 @@ import ItemCount from "./ItemCount";
 import React, { useEffect, useState } from "react";
 import { traerProductos } from "../api/products";
 import ItemList from "./ItemList";
-
+import { useParams } from "react-router-dom";
 const ItemListContainer = () => {
   const [items, setItems] = useState([]);
-
+const{catId}= useParams()
   useEffect(() => {
     traerProductos.then((res) => {
-      setItems(res);
+      
+      catId ? setItems(res.filter(cat => cat.categoria === catId))
+      :setItems(res);
     });
-  });
+  },[catId]);
 
   return (
     

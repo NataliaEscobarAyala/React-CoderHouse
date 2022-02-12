@@ -37,6 +37,79 @@ export const products = [
     categoria:"alimentos"
 
   },
+  {
+    id: 5,
+    name: "Cama-Color: Verde",
+    stock: 5,
+    price: 1200,
+    img: imagenes.img5,
+    categoria:"accesorios"
+
+  },
+  {
+    id: 6,
+    name: "collar",
+    stock: 5,
+    price: 500,
+    img: imagenes.img6,
+    categoria:"accesorios"
+
+  },
+  {
+    id: 7,
+    name: "kit",
+    stock: 5,
+    price: 2400,
+    img: imagenes.img7,
+    categoria:"accesorios"
+
+  },
+  {
+    id: 8,
+    name: "Gorrito",
+    stock: 5,
+    price: 370,
+    img: imagenes.img8,
+    categoria:"accesorios"
+
+  },
+  
+  {
+    id: 9,
+    name: "Mancuerna-Tela",
+    stock: 5,
+    price: 520,
+    img: imagenes.img9,
+    categoria:"juguetes"
+
+  },{
+    id: 10,
+    name: "Pelotita",
+    stock: 5,
+    price: 200,
+    img: imagenes.img10,
+    categoria:"juguetes"
+
+  },
+  {
+    id: 11,
+    name: "Soga",
+    stock: 5,
+    price: 300,
+    img: imagenes.img11,
+    categoria:"juguetes"
+
+  },
+  {
+    id:12,
+    name: "Kit",
+    stock: 5,
+    price: 2400,
+    img: imagenes.img7,
+    categoria:"juguetes"
+
+  },
+
 ];
 export const traerProductos = new Promise((resolve, reject) => {
   setTimeout(() => {
