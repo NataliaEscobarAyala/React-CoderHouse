@@ -3,7 +3,6 @@ import ItemDetail from "./ItemDetail";
 import React, { useState } from "react";
 import { traerProductos } from "../api/products";
 import { useParams } from "react-router-dom";
-
 export default function ItemDetailContainer() {
   const [item, setItem] = useState([]);
   const { itemId } = useParams();

@@ -9,7 +9,6 @@ import gorrito from "../img/gorrito.jpg"
 import mancuerna from "../img/mancuerna.jpg"
 import pelotita from "../img/pelotita.jpg"
 import soga from "../img/soga.jpeg"
-
 export default {
 "img1": Dogchow,
 "img2": oldprince,
