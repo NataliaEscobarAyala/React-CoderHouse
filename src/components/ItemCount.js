@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 
-function ItemCount({ stock, initial, onAdd }) {
-  const [counter, setCounter] = useState(initial);
+const Counter =({stock, initial, onAdd}) => {
+  const [number, setNumber]= useState(1);
 
-  return (
-    <div className="ItemListContainer">
-      <label>{counter}</label>
-      <button
-        type="button"
-        class="btn btn-success"
-        onClick={() => {
-          if (counter < stock) {
-            setCounter(counter + 1);
-          }
-        }}
-      >
-        +
-      </button>
-      <button
-        type="button"
-        class="btn btn-success"
-        onClick={() => {
-          if (counter > 1) {
-            setCounter(counter - 1);
-          }
-        }}
-      >
-        -
-      </button>
-      <button type="button" class="btn btn-success" onClick={onAdd(counter)}>
-        Agregar al carrito
-      </button>
+  const add = () => {
+    number < stock && setNumber (number +1);
+  };
+  const subtract = () => {
+    number > initial && setNumber (number - 1);
+  };
+  const addToCart = () => {
+    onAdd(number);
+  }
+
+
+return(
+  <div>
+  <div> <button onClick={add}>+</button>
+<p>{number}</p>
+<button type="button" onClick={subtract}>-</button>
+  </div>
+  <div><button
+    disabled={number===0}
+    className={number=== 0 ? "disabled" : "add"}
+    onClick={addToCart}> Agregar al carrito
+    </button>
     </div>
-  );
+  </div>)
 }
-export default ItemCount;
+
+
+
+
+export default Counter
