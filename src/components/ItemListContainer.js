@@ -8,7 +8,6 @@ const ItemListContainer = () => {
 const{catId}= useParams()
   useEffect(() => {
     traerProductos.then((res) => {
-      
       catId ? setItems(res.filter(cat => cat.categoria === catId))
       :setItems(res);
     });
@@ -17,14 +16,7 @@ const{catId}= useParams()
   return (
     
     <div className="ItemListContainer">
-      <ItemList items={items} />
-      {/* <ItemCount
-        stock={5}
-        initial={1}
-        onAdd={(counter) => console.log(counter)}
-      />
-       */}
-      
+      <ItemList items={items} />     
     </div>
   );
 };
