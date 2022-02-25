@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ItemDetail from "./components/ItemDetail";
 import CartContextProvider from "./Context/CartContext";
-import Cart from "./components/Cart";
+import CartList from "./components/CartList";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
             path="categoria/:catId"
             element={<ItemListContainer />}
           ></Route>
-          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/cart" element={<CartList />}></Route>
           <Route path="*" element={<h1>404 NOT FOUND</h1>}></Route>
         </Routes>
       </div>

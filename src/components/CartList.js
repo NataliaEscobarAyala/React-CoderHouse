@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../Context/CartContext";
 
-const Cart = () => {
+const CartList = () => {
   const { cart, vaciarCarrito, deleteItem } = useContext(CartContext);
 
   return (
@@ -17,7 +17,11 @@ const Cart = () => {
           {cart.map((producto) => (
             <div key={producto.id}>
               <h3>{producto.name}</h3>
+              <h3>${producto.price}</h3>
               <h3>{producto.cantidad}</h3>
+              {/* <h3>{producto.respuesta}</h3> */}
+
+
 
               <button onClick={() => deleteItem(producto.id)}>X</button>
             </div>
@@ -28,4 +32,4 @@ const Cart = () => {
     </>
   );
 };
-export default Cart;
+export default CartList;
