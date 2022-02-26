@@ -4,22 +4,29 @@ export const CartContext = createContext([]);
 const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cantidadTotal, setCantidadTotal] = useState(0);
+  const [precioTotal, setPrecioTotal] = useState(0);
 
   const addToCart = (cantidad, item) => {
+    //Si la funcion 'isOncart' devuelve true, significa que en el carrito ya existe un producto con ese id
+    //por lo tanto, solo se debe sumar la cantidad ingresada
+    
     if (isOnCart(item.id)) {
       sumarCantidad(cantidad, item);
     } else {
+      //Si la funcion 'isOncart' devuelve false, significa que en el carrito no existe un producto con ese id
+      // por lo tanto se debe agregar ese nuevo producto al carrito, es decir que se setea la variable de estado "cart"
       setCart([
         ...cart,
         { ...item, cantidad, totalPrice: cantidad * item.price },
       ]);
-      setCantidadTotal(cantidadTotal + cantidad);
     }
-    console.log(cart);
+    setCantidadTotal(cantidadTotal + cantidad);
+    setPrecioTotal(precioTotal + cantidad * item.price);
   };
 
+  //Esta funcion devuelve true o false en caso de que el producto agregado se encuentre en el carrito.
   const isOnCart = (Id) => {
-    return cart.some((item) => item.Id === Id);
+    return cart.some((item) => item.id === Id);
   };
 
   const sumarCantidad = (cantidad, item) => {
@@ -43,7 +50,9 @@ const CartContextProvider = ({ children }) => {
       (acumulador, item) => acumulador + item.cantidad,
       0
     );
+
     setCantidadTotal(cantidadTotal);
+    setPrecioTotal(precioTotal);
   };
 
   const vaciarCarrito = () => {
@@ -68,6 +77,7 @@ const CartContextProvider = ({ children }) => {
         deleteItem,
         sumaTotales,
         cantidadTotal,
+        precioTotal,
       }}
     >
       {children}
