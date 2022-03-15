@@ -26,13 +26,8 @@ function App() {
           ></Route>
           <Route path="/cart" element={<CartList />}></Route>
           <Route path="*" element={<h1>404 NOT FOUND</h1>}></Route>
-          <Route path="/item/add" element={<AddItemContainer />}>
-           
-          </Route>
+          <Route path="/item/add" element={<AddItemContainer />}></Route>
         </Routes>
-        
-
-        
       </div>
     </CartContextProvider>
   );

@@ -1,41 +1,41 @@
-import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
-import { db } from "../firebase";
+import { addItem, saveImg } from "../api/collectionService";
+
 const AddItemContainer = () => {
   const [name, setName] = useState("");
   const [categoria, setCategoria] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
+  const [imageFile, setImageFile] = useState([]);
+  const [fileUrl, setFileUrl] = useState("");
 
   const handleNameChange = (event) => setName(event.target.value);
   const handleCategoriaChange = (event) => setCategoria(event.target.value);
   const handlePriceChange = (event) => setPrice(event.target.value);
   const handleStockChange = (event) => setStock(event.target.value);
+  const handleImageChange = (event) => {
+    const _imageFile = event.target.files[0];
+    setImageFile(_imageFile);
+    const imageUrl = URL.createObjectURL(_imageFile);
+    setFileUrl(imageUrl);
+  };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     if (![name, categoria, price].some((field) => field === "")) {
-      const itemCollection = collection(db, "items");
+      const imgUrl = await saveImg(imageFile);
       const newItem = {
         name: name,
         categoria: categoria,
         price: price,
         stock: stock,
+        img: imgUrl,
       };
-      addDoc(itemCollection, newItem)
-        .then((doc) => {
-          console.log("Se guardo correctamente", doc.id);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      addItem("items", newItem);
     } else {
       console.log("Hay valores vacios");
     }
   };
-
- 
-  const setImage = () => {};
 
   return (
     <div className="form-product">
@@ -66,17 +66,15 @@ const AddItemContainer = () => {
         </div>
 
         <div className="input-item">
-          <label> Imagen</label>
           <input
-            name="file"
-            onChange={(e) => {
-              setImage(e.target.files[0]);
-            }}
-            type="text"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
           ></input>
         </div>
+        <img src={fileUrl} alt={imageFile.name} width="200px" />
         <button className="add-to-cart-button" type="submit">
-          Enviar
+          Guardar
         </button>
       </form>
     </div>

@@ -1,53 +1,22 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../Context/CartContext";
-import {
-  addDoc,
-  doc,
-  collection,
-  getDocs,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../firebase";
+import { getItems, updateItem, addItem } from "../api/collectionService";
 
 const CartList = () => {
   const { cart, vaciarCarrito, deleteItem, precioTotal } =
     useContext(CartContext);
 
   const ordenes = () => {
-    const ordersCollection = collection(db, "orders");
-    addDoc(ordersCollection, { cart })
+    addItem("orders", { cart })
       .then(async (document) => {
-
         alert(`Su compra se realizo correctamente ${document.id}`);
-        const items = await getItems();
-
+        const items = await getItems("items");
         for (const c of cart) {
-          const item = items.find((i) => i.id == c.id);
+          const item = items.find((i) => i.id === c.id);
           item.stock = item.stock - c.cantidad;
-          const itemRef = doc(db, "items", c.id);
-          updateDoc(itemRef, item)
-            .then((res) => {
-              console.log("Actualizado ");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+          updateItem("items", item);
         }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const getItems = async () => {
-    const itemsCollection = collection(db, "items");
-    return await getDocs(itemsCollection)
-      .then((snapshot) => {
-        return snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
       })
       .catch((error) => {
         console.log(error);
