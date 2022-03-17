@@ -58,6 +58,7 @@ const CartContextProvider = ({ children }) => {
   const vaciarCarrito = () => {
     setCart([]);
     setCantidadTotal(0);
+    setPrecioTotal(0);
   };
 
   const deleteItem = (id) => {
@@ -67,7 +68,9 @@ const CartContextProvider = ({ children }) => {
 
     setCantidadTotal(cantidadTotal - filtproduct[0].cantidad);
   };
-
+  
+    
+  
   return (
     <CartContext.Provider
       value={{

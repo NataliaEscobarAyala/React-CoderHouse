@@ -1,0 +1,49 @@
+.formulario{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+h3 {
+  margin-left: 400px;
+}
+
+/* .AddItemListContainer.card{
+    background-color: rgb(115, 208, 214)   
+}  */
+/* card-img-top */
+.file-select {
+  position: relative;
+  display: inline-block;
+}
+
+.file-select::before {
+  background-color: #8064a2;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  content: "Seleccionar";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.file-select input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
+}
+
+#src-file1::before {
+  content: "Seleccione una imagen";
+}
+
+.form {
+  margin-bottom: 20px;
+}

@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import "./NavBar.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import {CartContext} from "../Context/CartContext";
-
+import { CartContext } from "../Context/CartContext";
 export default function CartWidget() {
-const { cantidadTotal} = useContext(CartContext);
+  const { cantidadTotal } = useContext(CartContext);
 
   return (
     <div className="CartWidget">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
+        width="40"
+        height="40"
+        fill="violet"
         class="bi bi-cart"
         viewBox="0 0 16 16"
       >

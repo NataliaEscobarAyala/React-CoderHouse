@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addItem, saveImg } from "../api/collectionService";
-
+import Swal from "sweetalert2";
+import "./AddItemListContainer.css";
 const AddItemContainer = () => {
   const [name, setName] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -22,7 +23,11 @@ const AddItemContainer = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    if (![name, categoria, price].some((field) => field === "")) {
+    debugger;
+    if (
+      ![name, categoria, price].some((field) => field === "") &&
+      imageFile.length !== 0
+    ) {
       const imgUrl = await saveImg(imageFile);
       const newItem = {
         name: name,
@@ -31,53 +36,126 @@ const AddItemContainer = () => {
         stock: stock,
         img: imgUrl,
       };
-      addItem("items", newItem);
+      addItem("items", newItem)
+        .then(() => {
+          Swal.fire("", "Producto guardado correctamente!", "success");
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Hubo un error al insertar el producto, intente nuevamente!",
+            footer: "",
+          });
+        });
     } else {
-      console.log("Hay valores vacios");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Hay campos vacios!",
+        footer: "",
+      });
     }
   };
 
   return (
-    <div className="form-product">
-      <h1>Agregar nuevo producto</h1>
-      <form onSubmit={onSubmit}>
-        <div className="input-item">
-          <label> Nombre del producto</label>
-          <input value={name} onChange={handleNameChange} type="text"></input>
-        </div>
+    <div>
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Nuevo Producto</h3>
+          <form
+            class="needs-validation"
+            onSubmit={onSubmit}
+            className="formulario"
+          >
+            <div class="form-row" className="form">
+              <label for="validationCustom01">Descripcion</label>
+              <input
+                value={name}
+                onChange={handleNameChange}
+                type="text"
+                class="form-control"
+                id="validationCustom01"
+                placeholder="Descripcion"
+                required
+              />
+              <div class="valid-feedback">Perfecto!</div>
+            </div>
+            <div class="form-row" className="form">
+              <label for="validationCustom03">Categorias</label>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                onChange={handleCategoriaChange}
+              >
+                <option selected>Seleccione una categoria</option>
+                <option value="alimentos">Alimentos</option>
+                <option value="accesorios">Accesorios</option>
+                <option value="juguetes">Juguetes</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, seleccione una categoria.
+              </div>
+            </div>
 
-        <div className="input-item">
-          <label>Categoria</label>
-          <input
-            value={categoria}
-            onChange={handleCategoriaChange}
-            type="text"
-          ></input>
-        </div>
+            <div class="form-row" className="form">
+              <div class="col">
+                {" "}
+                <label for="validationCustom01">Precio</label>
+                <input
+                  value={price}
+                  onChange={handlePriceChange}
+                  type="text"
+                  class="form-control"
+                  id="validationCustom01"
+                  placeholder="Precio"
+                  required
+                />
+                <div class="valid-feedback">Perfecto!</div>
+              </div>
+              <div class="col">
+                <label for="validationCustom01">Stock</label>
+                <input
+                  value={stock}
+                  onChange={handleStockChange}
+                  type="number"
+                  class="form-control"
+                  id="validationCustom01"
+                  placeholder="Stock"
+                  required
+                />
+                <div class="valid-feedback">Perfecto!</div>
+              </div>
+            </div>
 
-        <div className="input-item">
-          <label> Precio</label>
-          <input value={price} onChange={handlePriceChange} type="text"></input>
-        </div>
+            <div class="form-row" className="form">
+              <div class="file-select" id="src-file1">
+                <input
+                  type="file"
+                  name="src-file1"
+                  aria-label="Archivo"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </div>
 
-        <div className="input-item">
-          <label> Stock</label>
-          <input value={stock} onChange={handleStockChange} type="text"></input>
-        </div>
+              <img
+                class="card-img-top"
+                src={fileUrl}
+                alt={imageFile.name}
+                width="100px"
+              />
+              <div class="valid-feedback">Perfecto!</div>
+            </div>
 
-        <div className="input-item">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          ></input>
+            <button class="btn btn-primary" type="submit">
+              Guardar
+            </button>
+          </form>
         </div>
-        <img src={fileUrl} alt={imageFile.name} width="200px" />
-        <button className="add-to-cart-button" type="submit">
-          Guardar
-        </button>
-      </form>
+      </div>
     </div>
   );
 };
+
 export default AddItemContainer;

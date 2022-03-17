@@ -59,13 +59,13 @@ export const updateItem = async (collectionName, item) => {
 
 //Guarda una imagen en el Storage de firebase y devuelve la URL de descarga
 export const saveImg = async (file) => {
-  const imagesRef = ref(storage, `img/${file.name}}`);
+  const imagesRef = ref(storage, `img/${file.name}`);
   //Guarda la imagen
   await uploadBytes(imagesRef, file).then((snapshot) => {
     console.log("Uploaded a blob or file!");
   });
   //Obtiene URL/ruta de la imagen
-  return await getDownloadURL(ref(storage, `img/${file.name}}`)).then((url) => {
+  return await getDownloadURL(ref(storage, `img/${file.name}`)).then((url) => {
     return url;
   });
 };

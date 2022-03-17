@@ -1,8 +1,11 @@
+body{
+    background-color: rgb(115, 208, 214);
+}
 .contenedor{
     display: flex;
     align-items: center;
     max-width: 1100px;
-    margin: 10px auto;
+    margin: 10px 20px 10px 30px;
     justify-content: space-between;
 }
  ul  {
@@ -12,3 +15,41 @@ ul li {
     list-style: none;
     margin-left: 10px;
 }
+
+.main-container{
+    background-image: url("../img/bg.webp");
+    background-size: cover;
+    height: 350px;
+
+}
+
+.Titulo{
+    height: 200px;
+   font-size: 90px;
+   margin-left: 350px;
+   color: rgb(201, 91, 201);
+   
+}
+.link{
+    text-decoration: none;
+    color: black;  
+
+}
+
+.nav{
+    padding-left: 400px;
+}
+ button{
+    margin-right: 20px;
+ }
+
+ .carrito{
+     background-color: white;
+ }
+
+ .btn-primary,  .btn-primary:active, .btn-primary:visited {
+    background-color: #8064A2;
+}
+
+
+ 
