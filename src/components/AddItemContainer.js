@@ -60,16 +60,16 @@ const AddItemContainer = () => {
 
   return (
     <div>
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">Nuevo Producto</h3>
+      <div className="card">
+        <div className="card-body">
+          <h3 className="card-title">Nuevo Producto</h3>
           <form
             class="needs-validation"
             onSubmit={onSubmit}
             className="formulario"
           >
             <div class="form-row" className="form">
-              <label for="validationCustom01">Descripcion</label>
+              <label htmlFor="validationCustom01">Descripcion</label>
               <input
                 value={name}
                 onChange={handleNameChange}
@@ -82,13 +82,14 @@ const AddItemContainer = () => {
               <div class="valid-feedback">Perfecto!</div>
             </div>
             <div class="form-row" className="form">
-              <label for="validationCustom03">Categorias</label>
+              <label htmlFor="validationCustom03">Categorias</label>
               <select
                 class="form-select"
                 aria-label="Default select example"
                 onChange={handleCategoriaChange}
+                defaultValue={'DEFAULT'}
               >
-                <option selected>Seleccione una categoria</option>
+                <option value="DEFAULT" disabled>Seleccione una categoria</option>
                 <option value="alimentos">Alimentos</option>
                 <option value="accesorios">Accesorios</option>
                 <option value="juguetes">Juguetes</option>
@@ -100,8 +101,7 @@ const AddItemContainer = () => {
 
             <div class="form-row" className="form">
               <div class="col">
-                {" "}
-                <label for="validationCustom01">Precio</label>
+                <label htmlFor="validationCustom01">Precio</label>
                 <input
                   value={price}
                   onChange={handlePriceChange}
@@ -114,7 +114,7 @@ const AddItemContainer = () => {
                 <div class="valid-feedback">Perfecto!</div>
               </div>
               <div class="col">
-                <label for="validationCustom01">Stock</label>
+                <label htmlFor="validationCustom01">Stock</label>
                 <input
                   value={stock}
                   onChange={handleStockChange}

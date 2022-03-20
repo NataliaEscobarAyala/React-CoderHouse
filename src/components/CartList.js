@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../Context/CartContext";
 import { getItems, updateItem, addItem } from "../api/collectionService";
 import "./CartList.css";
+import Swal from "sweetalert2";
 
 const CartList = () => {
   const { cart, vaciarCarrito, deleteItem, precioTotal } =
@@ -13,7 +14,11 @@ const CartList = () => {
   const ordenes = () => {
     addItem("orders", { cart })
       .then(async (document) => {
-        alert(`Su compra se realizo correctamente ${document.id}`);
+        Swal.fire(
+          "",
+          `Su compra se registro correctamente, Nro de Orden: ${document.id}`,
+          "success"
+        );
         const items = await getItems("items");
         for (const c of cart) {
           const item = items.find((i) => i.id === c.id);
@@ -22,7 +27,12 @@ const CartList = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Hubo un error al registrar la ordern, intente nuevamente!",
+          footer: "",
+        });
       });
   };
 
@@ -37,7 +47,7 @@ const CartList = () => {
         ) : (
           <>
             {cart.map((producto) => (
-              <div class="card mb-3" style={divStyles}>
+              <div class="card mb-3" styles={divStyles}>
                 <div class="row g-0">
                   <div class="col-md-4">
                     <img
@@ -46,19 +56,47 @@ const CartList = () => {
                       alt="..."
                     />
                   </div>
-                  {/* <div class="col-md-8"> */}
+                  <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">{producto.name}</h5>
-                      <h3>${producto.price}</h3>
-                      <h3>{producto.cantidad}</h3>
-                      <h3>${producto.totalPrice}</h3>
-                      <button onClick={() => deleteItem(producto.id)}>X</button>
+                      <h5 class="card-title">Producto {producto.name}</h5>
+                      <p class="card-text">
+                        <h3>Precio: ${producto.price}</h3>
+                        <h3>Cantidad {producto.cantidad}</h3>
+                        <h3>Total: ${producto.totalPrice}</h3>
+                      </p>
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onClick={() => deleteItem(producto.id)}
+                      >
+                        Eliminar producto
+                      </button>
+                      <p className="boton-vaciarCarrito-PrecioTotal">
+
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          onClick={vaciarCarrito}
+                        >
+                          Vaciar carrito
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          onClick={ordenes}
+                        >
+                          Comprar
+                        </button>
+                        <label> Total: ${precioTotal}</label>
+
+                      </p>
                     </div>
                   </div>
                 </div>
-              // </div>
+              </div>
             ))}
-             {/* {cart.map((producto) => (
+            {/* {cart.map((producto) => (
               <div key={producto.id}>
               <img  src={producto.img} />
 
@@ -69,9 +107,17 @@ const CartList = () => {
                 <button onClick={() => deleteItem(producto.id)}>X</button>
               </div>
             ))} */}
-            <button onClick={vaciarCarrito}>Vaciar carrito</button>
+            {/* <button
+              type="button"
+              class="btn btn-primary"
+              onClick={vaciarCarrito}
+            >
+              Vaciar carrito
+            </button>
             <label> Total: ${precioTotal}</label>
-            <button onClick={ordenes}>Comprar</button> 
+            <button type="button" class="btn btn-primary" onClick={ordenes}>
+              Comprar
+            </button> */}
           </>
         )}
       </>

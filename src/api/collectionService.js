@@ -39,7 +39,7 @@ export const addItem = async (collectionName, newItem) => {
   const itemCollection = collection(db, collectionName);
   return await addDoc(itemCollection, newItem)
     .then((doc) => {
-      console.log("Se guardo correctamente", doc.id);
+      return  doc;
     })
     .catch((error) => {
       console.log(error);

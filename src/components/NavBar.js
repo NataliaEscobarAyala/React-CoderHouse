@@ -14,7 +14,7 @@ const NavBar = () => {
         <nav  >
           <ul className="nav">
             <button type="button" class="btn btn-primary">
-              <Link to="/" className="link">Productos</Link>
+              <Link to="/" className="link">Inicio</Link>
             </button>
             <button type="button" class="btn btn-primary">
               <Link to={"categoria/alimentos"} className="link">Alimentos</Link>
